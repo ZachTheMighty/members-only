@@ -1,5 +1,6 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries.js");
+const bcrypt = require("bcryptjs");
 
 const emptyError = "field can't be empty.";
 const alphaError = "can only contain alphabet characters.";
@@ -66,7 +67,9 @@ const signUpFormPost = [
     const errors = validationResult(req);
     if (!errors.isEmpty())
       return res.status(400).render("sign_up.ejs", { errors: errors.array() });
-    await db.insertUser(matchedData(req));
+
+    const hashedPassword = await bcrypt.hash(matchedData(req).password, 10);
+    await db.insertUser(matchedData(req), hashedPassword);
     res.render("sign_up.ejs");
   },
 ];
