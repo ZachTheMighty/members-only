@@ -2,13 +2,21 @@ const { Client } = require("pg");
 const { argv } = require("node:process");
 
 const SQL = `
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name VARCHAR (255),
     last_name VARCHAR (255),
     email VARCHAR (255),
     password VARCHAR (255),
     membership_status BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    message VARCHAR (255),
+    date VARCHAR (255),
+    author INTEGER,
+    FOREIGN KEY (author) REFERENCES users(id)
 )
 `;
 

@@ -19,8 +19,16 @@ async function getUserById(id) {
   return rows[0];
 }
 
+async function insertMessage(message) {
+  await pool.query(
+    "INSERT INTO messages (message, date, author) VALUES ($1, $2, $3)",
+    [message.message, message.date, message.author],
+  );
+}
+
 module.exports = {
   insertUser,
   getUserByEmail,
   getUserById,
+  insertMessage,
 };
