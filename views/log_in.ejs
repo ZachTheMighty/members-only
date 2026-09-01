@@ -13,5 +13,8 @@
 <div><label for="password">Password</label><input type="password" id="password" name="password"></div>
 <button>Login</button>
 </form>
+<% if(locals.error) { %>
+<p><%= error%></p>
+<% } %>
 </body>
 </html>
