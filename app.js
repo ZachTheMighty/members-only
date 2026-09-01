@@ -44,9 +44,9 @@ app.use(passport.session());
 
 app.get("/", (req, res) => res.render("index.ejs"));
 
-app.use(signUpRoutes);
-app.use(logInRoutes);
-app.use(dashboardRoutes);
+app.use("/sign-up", signUpRoutes);
+app.use("/log-in", logInRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 const port = process.env.NODE_SERVER_PORT;
 
