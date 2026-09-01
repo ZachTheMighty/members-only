@@ -49,14 +49,7 @@ const logInFormPost = [
   }),
 ];
 
-const logOutGet = (req, res) =>
-  req.logout((error) => {
-    if (error) return error;
-    res.redirect("/");
-  });
-
 module.exports = {
   logInFormGet,
   logInFormPost,
-  logOutGet,
 };

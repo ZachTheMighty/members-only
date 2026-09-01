@@ -47,6 +47,12 @@ app.get("/", (req, res) => res.render("index.ejs"));
 app.use("/sign-up", signUpRoutes);
 app.use("/log-in", logInRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/log-out", (req, res) =>
+  req.logout((error) => {
+    if (error) return error;
+    res.redirect("/");
+  }),
+);
 
 const port = process.env.NODE_SERVER_PORT;
 
