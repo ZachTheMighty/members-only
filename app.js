@@ -45,9 +45,21 @@ app.get("/", (req, res) => res.render("index.ejs"));
 app.use(signUpRoutes);
 app.use(logInRoutes);
 
-app.get("/dashboard", (req, res) =>
-  res.send(`<h1>Welcome, ${req.user.first_name} ${req.user.last_name}</h1>`),
-);
+app.get("/dashboard", (req, res) => {
+  if (req.isAuthenticated())
+    res.send(`<h1>Welcome, ${req.user.first_name} ${req.user.last_name}</h1>`);
+  else
+    res
+      .status(401)
+      .json({ msg: "You are not authorized to view this resource" });
+});
+
+app.get("/logout", (req, res) => {
+  req.logout((error) => {
+    if (error) return error;
+    res.redirect("/");
+  });
+});
 
 const port = process.env.NODE_SERVER_PORT;
 
