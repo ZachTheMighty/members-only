@@ -70,7 +70,7 @@ const signUpFormPost = [
 
     const hashedPassword = await bcrypt.hash(matchedData(req).password, 10);
     await db.insertUser(matchedData(req), hashedPassword);
-    res.render("sign_up.ejs");
+    res.redirect("/log-in");
   },
 ];
 

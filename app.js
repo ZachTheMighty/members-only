@@ -11,14 +11,16 @@ try {
 
 const app = express();
 
-const routes = require("./routes/routes.js");
+const signUpRoutes = require("./routes/signUpRoutes.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("views engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use(routes);
+app.get("/", (req, res) => res.render("index.ejs"));
+
+app.use(signUpRoutes);
 
 const port = process.env.NODE_SERVER_PORT;
 
