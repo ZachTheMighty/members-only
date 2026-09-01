@@ -2,6 +2,8 @@ const { body, validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries.js");
 const bcrypt = require("bcryptjs");
 
+const signUpFormGet = (req, res) => res.render("sign_up.ejs");
+
 const emptyError = "field can't be empty.";
 const alphaError = "can only contain alphabet characters.";
 const strongPasswordError =
@@ -58,8 +60,6 @@ const validateUser = [
     .custom((value, { req }) => value === req.body.password)
     .withMessage("The two passwords don't match"),
 ];
-
-const signUpFormGet = (req, res) => res.render("sign_up.ejs");
 
 const signUpFormPost = [
   validateUser,
