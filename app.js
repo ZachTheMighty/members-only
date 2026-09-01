@@ -15,6 +15,8 @@ const app = express();
 
 const signUpRoutes = require("./routes/signUpRoutes.js");
 const logInRoutes = require("./routes/logInRoutes.js");
+const dashboardRoutes = require("./routes/dashboardRoutes.js");
+
 const pool = require("./db/pool.js");
 const passport = require("passport");
 
@@ -44,6 +46,7 @@ app.get("/", (req, res) => res.render("index.ejs"));
 
 app.use(signUpRoutes);
 app.use(logInRoutes);
+app.use(dashboardRoutes);
 
 app.get("/dashboard", (req, res) => {
   if (req.isAuthenticated())
