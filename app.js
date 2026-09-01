@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
-    secret: "idk",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     store: new pgSession({
