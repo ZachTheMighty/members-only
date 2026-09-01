@@ -1,8 +1,10 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const passport = require("passport");
 
-const logInFormGet = (req, res) =>
+const logInFormGet = (req, res) => {
   res.render("log_in.ejs", { error: req.session.messages });
+  req.session.messages = [];
+};
 
 const emptyError = "field can't be empty.";
 

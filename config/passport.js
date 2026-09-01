@@ -13,10 +13,11 @@ passport.use(
     try {
       const user = await db.getUserByEmail(email);
 
-      if (!user) return done(null, false, { message: "Incorrect email" });
+      if (!user)
+        return done(null, false, { message: "Incorrect email or password" });
 
       if (!(await bcrypt.compare(password, user.password)))
-        return done(null, false, { message: "Incorrect password" });
+        return done(null, false, { message: "Incorrect email or password" });
 
       return done(null, user);
     } catch (error) {
