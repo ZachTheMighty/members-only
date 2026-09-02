@@ -34,6 +34,7 @@ app.use(
     store: new pgSession({
       pool,
       tableName: "session",
+      createTableIfMissing: true,
     }),
     cookie: { maxAge: 1000 * 64 * 64 * 24 },
   }),
