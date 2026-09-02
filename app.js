@@ -54,6 +54,8 @@ app.use("/log-out", (req, res) =>
   }),
 );
 
+app.use((req, res) => res.status(404).send("this page doesn't exist, retard"));
+
 const port = process.env.NODE_SERVER_PORT;
 
 app.listen(port, (error) => {
