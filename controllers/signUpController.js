@@ -69,7 +69,11 @@ const signUpFormPost = [
       return res.status(400).render("sign_up.ejs", { errors: errors.array() });
 
     const hashedPassword = await bcrypt.hash(matchedData(req).password, 10);
-    await db.insertUser(matchedData(req), hashedPassword);
+    await db.insertUser(
+      matchedData(req),
+      hashedPassword,
+      req.body.isAdmin ? true : false,
+    );
     res.redirect("/log-in");
   },
 ];
