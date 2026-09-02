@@ -11,6 +11,6 @@ const ENV = process.env;
 
 module.exports = new Pool({
   connectionString:
-    ENV.DATABASE_URL ||
+    ENV.DATABASE_PUBLIC_URL ||
     `postgresql://${ENV.USER}:${ENV.PASSWORD}@${ENV.HOST}:${ENV.DATABASE_SERVER_PORT}/${ENV.DATABASE}`,
 });
