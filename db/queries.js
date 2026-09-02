@@ -33,10 +33,24 @@ async function updateMemberShipStatus(userId, status) {
   ]);
 }
 
+async function getAllMessages() {
+  const { rows } = await pool.query("SELECT * FROM messages");
+  for (let i = 0; i < rows.length; i++) {
+    const authorName = await pool.query(
+      "SELECT first_name, last_name FROM users INNER JOIN messages ON users.id = author WHERE author = $1",
+      [rows[i].author],
+    );
+    rows[i].author =
+      `${authorName.rows[0].first_name} ${authorName.rows[0].last_name}`;
+  }
+  return rows;
+}
+
 module.exports = {
   insertUser,
   getUserByEmail,
   getUserById,
   insertMessage,
   updateMemberShipStatus,
+  getAllMessages,
 };

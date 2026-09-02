@@ -13,6 +13,7 @@ try {
 
 const app = express();
 
+const homepageRoutes = require("./routes/homepageRoutes.js");
 const signUpRoutes = require("./routes/signUpRoutes.js");
 const logInRoutes = require("./routes/logInRoutes.js");
 const dashboardRoutes = require("./routes/dashboardRoutes.js");
@@ -42,8 +43,7 @@ require("./config/passport.js");
 
 app.use(passport.session());
 
-app.get("/", (req, res) => res.render("index.ejs"));
-
+app.use("/", homepageRoutes);
 app.use("/sign-up", signUpRoutes);
 app.use("/log-in", logInRoutes);
 app.use("/dashboard", dashboardRoutes);

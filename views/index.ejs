@@ -12,5 +12,26 @@
 <p>
 <a href="/log-in">Login</a>
 </p>
+
+
+<table border="1">
+<thead>
+<tr>
+<th>Author</th>
+<th>Message</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody>
+<% messages.forEach(message => {%>
+<tr>
+<td><%= message.author%></td>
+<td><%= message.message%></td>
+<td><%= message.date%></td>
+</tr>
+<% }); %>
+</tbody>
+</table>
 </body>
 </html>
