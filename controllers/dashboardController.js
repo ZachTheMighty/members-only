@@ -27,10 +27,16 @@ const joinPost = async (req, res) => {
   } else res.render("join.ejs", { errors: [{ msg: "passcode is incorrect" }] });
 };
 
+const leaveGet = (req, res) => {
+  db.updateMemberShipStatus(req.user.id, false);
+  res.redirect("/dashboard");
+};
+
 module.exports = {
   dashboardGet,
   createMessageGet,
   createMessagePost,
   joinGet,
   joinPost,
+  leaveGet,
 };

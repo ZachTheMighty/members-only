@@ -18,4 +18,6 @@ route.post("/new_message", controller.createMessagePost);
 route.get("/join", controller.joinGet);
 route.post("/join", controller.joinPost);
 
+route.get("/leave", controller.leaveGet);
+
 module.exports = route;
