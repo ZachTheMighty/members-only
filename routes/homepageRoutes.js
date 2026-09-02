@@ -3,6 +3,6 @@ const route = Router();
 
 const controller = require("../controllers/homepageController.js");
 
-route.use("/", controller.homepageGet);
+route.get("/", controller.homepageGet);
 
 module.exports = route;
