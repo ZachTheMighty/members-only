@@ -11,7 +11,11 @@ route.use((req, res, next) => {
       .json({ msg: "You are not authorized to view this resource." });
 });
 route.get("/", controller.dashboardGet);
+
 route.get("/new_message", controller.createMessageGet);
 route.post("/new_message", controller.createMessagePost);
+
+route.get("/join", controller.joinGet);
+route.post("/join", controller.joinPost);
 
 module.exports = route;

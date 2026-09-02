@@ -18,8 +18,21 @@ const createMessagePost = async (req, res) => {
   res.redirect("/dashboard");
 };
 
+const joinGet = (req, res) => res.render("join.ejs");
+const joinPost = async (req, res) => {
+  if (req.body.passcode === process.env.CLUB_PASSCODE) {
+    db.updateMemberShipStatus(req.user.id, true);
+    res.render("dashboard.ejs", {
+      fullName: `${req.user.first_name} ${req.user.last_name}`,
+      isMember: req.user.membership_status,
+    });
+  } else res.render("join.ejs", { errors: [{ msg: "passcode is incorrect" }] });
+};
+
 module.exports = {
   dashboardGet,
   createMessageGet,
   createMessagePost,
+  joinGet,
+  joinPost,
 };

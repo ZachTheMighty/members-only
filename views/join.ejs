@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Join Clubhouse</title>
+</head>
+<body>
+<h1>Join Clubhouse</h1>
+<form action="/dashboard/join" method="post">
+<div><label for="passcode">Enter passcode: </label><input type="password" id="passcode" name="passcode"></div>
+<button>Join clubhouse</button>
+<%- include("partials/errors")%>
+</form>
+</body>
+</html>
