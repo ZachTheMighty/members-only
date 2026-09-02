@@ -6,9 +6,7 @@ const controller = require("../controllers/dashboardController.js");
 route.use((req, res, next) => {
   if (req.isAuthenticated()) next();
   else
-    res
-      .status(401)
-      .json({ msg: "You are not authorized to view this resource." });
+    res.status(401).json({ msg: "You need to log in to view this resource." });
 });
 route.get("/", controller.dashboardGet);
 
