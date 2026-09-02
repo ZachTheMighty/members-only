@@ -16,7 +16,7 @@
 
 
 <% if(messages.length !== 0) {%>
-<table border="1">
+<table>
 <thead>
 <tr>
 <% if(locals.isMember) {%>
@@ -37,6 +37,9 @@
 <td><%= message.message%></td>
 <% } %>
 <td><%= message.date%></td>
+<% if(locals.isAdmin) {%>
+<td><a href="/delete_message?id=<%= message.id%>">Delete</a></td>
+<% } %>
 </tr>
 <% }); %>
 </tbody>
