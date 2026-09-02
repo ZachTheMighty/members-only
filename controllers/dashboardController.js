@@ -2,7 +2,6 @@ const db = require("../db/queries.js");
 
 const dashboardGet = (req, res) => {
   res.locals.fullName = `${req.user.first_name} ${req.user.last_name}`;
-  res.locals.isMember = req.user.membership_status;
   res.render("dashboard.ejs");
 };
 

@@ -17,8 +17,11 @@
 <table border="1">
 <thead>
 <tr>
+<% if(locals.isMember) {%>
 <th>Author</th>
+<% } else {%>
 <th>Message</th>
+<% }%>
 <th>Date</th>
 </tr>
 </thead>
@@ -26,8 +29,11 @@
 <tbody>
 <% messages.forEach(message => {%>
 <tr>
+<% if(locals.isMember) {%>
 <td><%= message.author%></td>
+<% } else {%>
 <td><%= message.message%></td>
+<% } %>
 <td><%= message.date%></td>
 </tr>
 <% }); %>
