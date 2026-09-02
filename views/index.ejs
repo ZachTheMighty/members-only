@@ -19,26 +19,34 @@
 <table>
 <thead>
 <tr>
-<% if(locals.isMember) {%>
+<% if(locals.isAdmin) {%>
 <th>Author</th>
+<th>Message</th>
+<th>Date</th>
+<% } else if(locals.isMember) {%>
+<th>Author</th>
+<th>Date</th>
 <% } else {%>
 <th>Message</th>
-<% }%>
 <th>Date</th>
+<% } %>
 </tr>
 </thead>
 
 <tbody>
 <% messages.forEach(message => {%>
 <tr>
-<% if(locals.isMember) {%>
+<% if(locals.isAdmin) {%>
 <td><%= message.author%></td>
+<td><%= message.message%></td>
+<td><%= message.date%></td>
+<td><a href="/delete_message?id=<%= message.id%>">Delete</a></td>
+<% } else if(locals.isMember){%>
+<td><%= message.author%></td>
+<td><%= message.date%></td>
 <% } else {%>
 <td><%= message.message%></td>
-<% } %>
 <td><%= message.date%></td>
-<% if(locals.isAdmin) {%>
-<td><a href="/delete_message?id=<%= message.id%>">Delete</a></td>
 <% } %>
 </tr>
 <% }); %>
