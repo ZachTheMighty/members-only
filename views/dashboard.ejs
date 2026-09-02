@@ -8,7 +8,9 @@
 <%- include("partials/logo.ejs")%>
 <h1>Welcome, <%= fullName%>!</h1>
 <h2><a href="/log-out">Logout</a></h2>
+<% if(locals.isMember) {%>
 <h3><a href="/dashboard/new_message">Create new message</a></h3>
+<% } %>
 <% if(locals.isMember) {%>
 <h3><a href="/dashboard/leave">leave clubhouse</a></h3>
 <% } else {%>

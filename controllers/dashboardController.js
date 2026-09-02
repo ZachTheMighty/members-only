@@ -6,7 +6,13 @@ const dashboardGet = (req, res) => {
   res.render("dashboard.ejs");
 };
 
-const createMessageGet = (req, res) => res.render("createMessageForm.ejs");
+const createMessageGet = (req, res) => {
+  if (req.user.membership_status) res.render("createMessageForm.ejs");
+  else
+    res
+      .status(401)
+      .send({ msg: "You need to be a member in order to create messages." });
+};
 
 const createMessagePost = async (req, res) => {
   const message = {
