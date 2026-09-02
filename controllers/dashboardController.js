@@ -1,9 +1,9 @@
 const db = require("../db/queries.js");
 
 const dashboardGet = (req, res) => {
-  res.render("dashboard.ejs", {
-    fullName: `${req.user.first_name} ${req.user.last_name}`,
-  });
+  res.locals.fullName = `${req.user.first_name} ${req.user.last_name}`;
+  res.locals.isMember = req.user.membership_status;
+  res.render("dashboard.ejs");
 };
 
 const createMessageGet = (req, res) => res.render("createMessageForm.ejs");
@@ -19,13 +19,11 @@ const createMessagePost = async (req, res) => {
 };
 
 const joinGet = (req, res) => res.render("join.ejs");
+
 const joinPost = async (req, res) => {
   if (req.body.passcode === process.env.CLUB_PASSCODE) {
     db.updateMemberShipStatus(req.user.id, true);
-    res.render("dashboard.ejs", {
-      fullName: `${req.user.first_name} ${req.user.last_name}`,
-      isMember: req.user.membership_status,
-    });
+    res.redirect("/dashboard");
   } else res.render("join.ejs", { errors: [{ msg: "passcode is incorrect" }] });
 };
 
